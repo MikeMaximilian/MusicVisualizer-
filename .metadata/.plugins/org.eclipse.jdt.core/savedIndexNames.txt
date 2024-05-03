@@ -1,0 +1,12 @@
+INDEX VERSION 1.134+/home/max/Programming/FHNW Programming/Programming 2/Project/MusicVisualizerWS/.metadata/.plugins/org.eclipse.jdt.core
+285126385.index
+3712430074.index
+1624989636.index
+1614532366.index
+2822898144.index
+650290690.index
+1950950551.index
+3414183091.index
+2478617660.index
+572230073.index
+1865797976.index

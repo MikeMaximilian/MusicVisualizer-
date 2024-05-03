@@ -1,0 +1,40 @@
+/* This class will handle the interactions between the GUI elements and the backend logic. 
+ * It contains methods for uploading MP3 files, playing/pausing music, and updating the visualization.
+ */
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.layout.VBox;
+import javafx.scene.control.Button;
+import javafx.scene.layout.VBox;
+
+public class MusicVisualizerController {
+
+    @FXML
+    private Button playButton;
+    
+    @FXML
+    private Button uploadButton;
+    
+    @FXML
+    private VBox visualizationArea;
+    
+    // Add event handlers for buttons and other GUI elements
+
+    public MusicVisualizerController() {
+        // Initialize GUI components programmatically
+        initializeGUI();
+    }
+    private void initializeGUI() {
+        // Create buttons
+        uploadButton = new Button("Upload Music");
+        playButton = new Button("Play"); 
+    public void uploadButtonClicked() {
+        // Implement logic to upload MP3 files
+    }
+    
+    public void playButtonClicked() {
+        // Implement logic to play/pause music
+    }
+    
+    // Add methods to update the visualization
+}

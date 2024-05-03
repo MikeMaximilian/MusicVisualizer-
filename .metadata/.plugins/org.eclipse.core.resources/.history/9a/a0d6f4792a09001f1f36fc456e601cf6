@@ -1,0 +1,91 @@
+/* This class will handle the interactions between the GUI elements and the backend logic. 
+ * It contains methods for uploading MP3 files, playing/pausing music, and updating the visualization.
+ */
+import javafx.scene.control.Button;
+import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser; 
+import javafx.stage.Stage; 
+import java.io.File; 
+import javafx.geometry.Pos; 
+import javafx.scene.layout.HBox; 
+
+
+public class MusicVisualizerController {
+
+    private Button playButton;
+    private Button uploadButton;
+    private Button stopButton;
+    private VBox visualizationArea;
+    private HBox buttonbox; // to align button objects as desired 
+    private MusicPlayer musicPlayer;
+    private MusicVisualization musicVisualization; 
+    private boolean isMusicPlaying = false;
+
+    public MusicVisualizerController(VBox visualizationArea) {
+        this.visualizationArea = visualizationArea;
+        this.musicPlayer = new MusicPlayer(); // Instantiate MusicPlayer
+        this.musicVisualization = new MusicVisualization(visualizationArea); // Instantiate MusicVisualization
+        initializeGUI();
+    }
+
+    private void initializeGUI() {  // Create HBox to contain buttons
+        buttonbox = new HBox();
+        buttonbox.setAlignment(Pos.CENTER); // Align buttons to the center horizontally
+        buttonbox.setSpacing(10); // Add some spacing between buttons
+    	  // Create HBox to contain buttons
+        buttonbox = new HBox();
+        buttonbox.setAlignment(Pos.CENTER); // Align buttons to the center horizontally
+        buttonbox.setSpacing(10); // Add some spacing between buttons
+    	
+        // Create buttons
+        uploadButton = new Button("Upload Music");
+        playButton = new Button("Play");
+        stopButton = new Button("Stop");
+        
+        // Set event handlers
+        uploadButton.setOnAction(event -> uploadButtonClicked());
+        playButton.setOnAction(event -> playButtonClicked());
+        stopButton.setOnAction(event -> stopButtonClicked());
+        
+        // Add buttons to the layout
+        visualizationArea.getChildren().addAll(uploadButton, playButton);
+        // Stop Button initialisation 
+        stopButton = new Button("Stop");
+        visualizationArea.getChildren().add(stopButton);
+    }
+
+    // Event handler for upload button
+    private void uploadButtonClicked() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open MP3 File");
+        fileChooser.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter("MP3 Files", "*.mp3"));
+        File selectedFile = fileChooser.showOpenDialog(new Stage());
+        if (selectedFile != null) {
+            String filePath = selectedFile.toURI().toString();
+            musicPlayer.loadMusic(filePath);
+    }
+    }
+    // Event handler for play button
+    private void playButtonClicked() {
+        if (!isMusicPlaying) {
+            musicPlayer.play();
+            isMusicPlaying = true;
+            playButton.setText("Pause");
+        } else {
+            musicPlayer.pause();
+            isMusicPlaying = false;
+            playButton.setText("Play");
+        }
+    }
+    
+ // Event handler for stop button
+    private void stopButtonClicked() {
+        musicPlayer.stop();
+        isMusicPlaying = false;
+        playButton.setText("Play");
+    }
+    
+    
+}
+
